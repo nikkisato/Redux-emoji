@@ -1,14 +1,10 @@
-import { getThumbnails } from './moodSelectors';
+import { getFace } from './moodSelectors';
 
-describe('videos selectors', () => {
-  it('gets thumbnail objects from state', () => {
-    const state = ['1234', '2345', '4567'];
-    const thumbnails = getThumbnails(state);
+describe('face selectors', () => {
+  it('gets face objects from state', () => {
+    const state = ['isHungry', 'isTired', 'isHyper'];
+    const face = getFace(state);
 
-    expect(thumbnails).toEqual([
-      { thumbnailUrl: 'https://img.youtube.com/vi/1234/default.jpg', videoId: '1234' },
-      { thumbnailUrl: 'https://img.youtube.com/vi/2345/default.jpg', videoId: '2345' },
-      { thumbnailUrl: 'https://img.youtube.com/vi/4567/default.jpg', videoId: '4567' }
-    ]);
+    expect(face).toEqual('😀');
   });
 });
