@@ -1,41 +1,22 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import Controls from '../components/controls/Controls';
 import Face from '../components/face/Face';
 import { getFace } from '../selectors/moodSelectors';
-import {
-  drinkCoffee,
-  eatSnacks,
-  takeNaps,
-  study
-} from '../actions/moodActions';
-import reducer from '../reducers/moodReducers';
+import { drinkCoffee, eatSnack, takeNap, study } from '../actions/moodActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Moods() {
-  const [state, dispatch] = useReducer(reducer, {
-    coffees: 0,
-    naps: 0,
-    studies: 0,
-    snacks: 0
-  });
-
-  const { coffees, snacks, naps, studies } = this.state;
-  const face = getFace(this.state);
+  const dispatch = useDispatch();
+  const face = useSelector(getFace);
 
   return (
     <>
       <Controls>
-        <button onClick={() => this.handleSelection({ type: 'DRINK_COFFEE' })}>
-          coffee - {coffees}
-        </button>
-        <button onClick={() => this.handleSelection({ type: 'EAT_SNACK' })}>
-          snacks - {snacks}
-        </button>
-        <button onClick={() => this.handleSelection({ type: 'TAKE_NAP' })}>
-          naps - {naps}
-        </button>
-        <button onClick={() => this.handleSelection({ type: 'STUDY' })}>
-          studies - {studies}
-        </button>
+        <button onClick={() => dispatch(drinkCoffee())}>Drink Coffee</button>
+        <button onClick={() => dispatch(eatSnack())}>Eat Snack</button>
+
+        <button onClick={() => dispatch(takeNap())}>Take Nap</button>
+        <button onClick={() => dispatch(study())}>Study</button>
       </Controls>
       <Face emoji={face} />
     </>
