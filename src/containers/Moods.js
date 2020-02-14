@@ -4,6 +4,7 @@ import Face from '../components/face/Face';
 import { getFace } from '../selectors/moodSelectors';
 import { drinkCoffee, eatSnack, takeNap, study } from '../actions/moodActions';
 import { useDispatch, useSelector } from 'react-redux';
+import reducer from '../reducers/moodReducers';
 
 export default function Moods() {
   const dispatch = useDispatch();
